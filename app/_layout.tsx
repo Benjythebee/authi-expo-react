@@ -1,6 +1,6 @@
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
+// import { StatusBar } from 'expo-status-bar';
 import 'react-native-reanimated';
 
 import { InteractiveConfigProvider } from '@/context/config';
@@ -11,8 +11,8 @@ export default function RootLayout() {
   const colorScheme = useColorScheme();
 
   return (
-    <InteractiveConfigProvider>
-      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+        <InteractiveConfigProvider>
         <Stack>
           <Stack.Screen 
             name="index" 
@@ -22,8 +22,8 @@ export default function RootLayout() {
             }} 
           />
         </Stack>
-        <StatusBar style="auto" />
-      </ThemeProvider>
+        {/* <StatusBar style="auto" /> */}
     </InteractiveConfigProvider>
+      </ThemeProvider>
   );
 }

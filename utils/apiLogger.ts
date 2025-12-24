@@ -1,3 +1,5 @@
+import { INTERNAL_API_HOST_URL } from "@/constants/internal";
+
 interface LogData {
     level: 'info' | 'warn' | 'error' | 'debug';
     message: string;
@@ -6,7 +8,7 @@ interface LogData {
 }
 
 export class ApiLogger {
-    private static readonly LOG_ENDPOINT = 'http://localhost:3000/log';
+    private static readonly LOG_ENDPOINT = `http://${INTERNAL_API_HOST_URL}:3000/log`;
 
     static async log(logData: LogData): Promise<void> {
         try {

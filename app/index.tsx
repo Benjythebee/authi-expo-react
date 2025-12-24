@@ -2,7 +2,6 @@ import { Button, Linking, Modal, StyleSheet, View } from 'react-native';
 
 import InteractiveAbsoluteButton from '@/components/interactives/button';
 import HotZone from '@/components/interactives/hot-zone';
-import { ImageView } from '@/components/interactives/image-view';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { useInteractiveConfig } from '@/context/config';
@@ -24,9 +23,16 @@ export default function HomeScreen() {
         }
     }
 
+    if(!metadata) {
+      return (
+        <View style={styles.container}>
+          <ThemedText>Loading...</ThemedText>
+        </View>
+      );
+    }
+
   return (
     <View style={styles.container}>
-      <ImageView />
         {metadata.trigger.type === 'zone' && <HotZone
             position={[metadata.trigger.position.x, metadata.trigger.position.y]}
             scale={metadata.trigger.scale}

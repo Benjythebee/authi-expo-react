@@ -16,6 +16,9 @@ This is an Expo react native app that first comes from a boilerplate and modifie
    npx expo start
    ```
 
+3. search and replace;
+Because the device is on a separate machine, search for "192.168.1.93" and replace it with your own internal IP
+
 In the output, you'll find options to open the app in a
 
 - [development build](https://docs.expo.dev/develop/development-builds/introduction/)

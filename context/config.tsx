@@ -1,4 +1,5 @@
 // src/context/AppDataContext.tsx
+import { INTERNAL_API_HOST_URL } from "@/constants/internal";
 import { InteractiveRow } from "@/types";
 import { createContext, useContext, useEffect, useState } from "react";
 
@@ -31,7 +32,7 @@ export const InteractiveConfigProvider = ({ children }: { children: React.ReactN
   const [data, setData] = useState<StoreInteractiveData | null>(null);
 
   useEffect(() => {
-    fetch("http://localhost:3000/store/default_store")
+    fetch(`http://${INTERNAL_API_HOST_URL}:3000/store/default_store`)
       .then(res => res.json())
       .then((d)=>{
         console.log("Fetched interactive data:", d);
@@ -42,8 +43,6 @@ export const InteractiveConfigProvider = ({ children }: { children: React.ReactN
         setData(defaultMetadata)
       });
   }, []);
-
-  if (!data) return null; // or splash screen
 
   return (
     <AppDataContext.Provider value={data}>

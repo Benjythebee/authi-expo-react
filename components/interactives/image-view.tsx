@@ -1,5 +1,6 @@
 import { StyleSheet, View, type ViewProps } from 'react-native';
 
+import { INTERNAL_API_HOST_URL } from '@/constants/internal';
 import { useInteractiveConfig } from '@/context/config';
 import { useThemeColor } from '@/hooks/use-theme-color';
 import { InteractiveRow } from '@/types';
@@ -42,13 +43,11 @@ export function ImageView({ style, lightColor, darkColor, ...otherProps }: Image
   return <View style={[styles.container]} {...otherProps} />;
 }
 
-
-
 const stylesFactory = (imageUrl:string) => StyleSheet.create({
   container: {
     width: '100%',
     height: '100%',
-    backgroundImage: `url(http://localhost:3000/images/${imageUrl})`,
+    backgroundImage: `url(http://${INTERNAL_API_HOST_URL}:3000/images/${imageUrl})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     // In React Native, all dimensions are unitless and represent density-independent pixels.
