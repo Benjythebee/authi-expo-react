@@ -1,6 +1,6 @@
-# Welcome to your Expo app 👋
+# Summary
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+This is an Expo react native app that first comes from a boilerplate and modified to include only what I needed.
 
 ## Get started
 
@@ -25,26 +25,48 @@ In the output, you'll find options to open the app in a
 
 You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
 
-## Get a fresh project
 
-When you're ready, run:
+## Running on Different Platforms
+
+### Web Development
+To run the app in a web browser:
 
 ```bash
-npm run reset-project
+npm run web
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+This will start the development server and open the app in your default browser.
 
-## Learn more
+### Android Emulator Setup
 
-To learn more about developing your project with Expo, look at the following resources:
+1. **Install Android Studio**
+   - Download from [developer.android.com](https://developer.android.com/studio)
+   - Follow the installation wizard
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+2. **Set up an Android Virtual Device (AVD)**
+   - Open Android Studio
+   - Go to Tools > AVD Manager
+   - Click "Create Virtual Device"
+   - Select a device definition and system image
+   - Click "Finish"
 
-## Join the community
+3. **Run on Android Emulator**
+   - Start your AVD from Android Studio
+   - In your project terminal, run:
+   ```bash
+   npx expo start
+   ```
+   - Press `a` to open in Android emulator
 
-Join our community of developers creating universal apps.
+### iOS Simulator (macOS only)
+- Install Xcode from the Mac App Store
+- Run `npx expo start` and press `i` to open in iOS simulator
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+
+
+## AI Disclaimer
+
+I've used AI in situations where the code is in my opinion, repetitive or can be easily reproduced.
+Such example is when generating a basic layout for the context in `context/config.tsx` using the prompt `Generate a react context that will fetch http... and save the data locally on mount`
+
+Another example is `"Generate a helper class that will log custom data to http..."` to generate apiLogger.ts
