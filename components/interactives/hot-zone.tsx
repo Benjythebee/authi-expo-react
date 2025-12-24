@@ -1,34 +1,40 @@
 import React from 'react';
-import { TouchableOpacity, StyleSheet } from 'react-native';
+import { StyleSheet, TouchableOpacity } from 'react-native';
 
 interface HotZoneProps {
     position: [number, number];
     onPress?: () => void;
     width?: number;
     height?: number;
+    scale?: number;
+    visible?: boolean;
 }
 
 const HotZone: React.FC<HotZoneProps> = ({ 
     position, 
     onPress, 
-    width = 50, 
-    height = 50 
+    scale=1,
+    visible=true,
+    width = 96, 
+    height = 96 
 }) => {
-    const [x, y] = position;
 
     return (
         <TouchableOpacity
             style={[
                 styles.hotZone,
                 {
-                    left: x,
-                    top: y,
-                    width,
-                    height,
+                    transform: [{ translateX: '-50%' }, { translateY: '-50%' }],
+                    left: `${position[0]}%`,
+                    top: `${position[1]}%`,
+                    opacity: visible ? 0.8 : 0,
+                    width: width * scale,
+                    height: height * scale,
+                    
                 },
             ]}
             onPress={onPress}
-            activeOpacity={0.7}
+            activeOpacity={0.1}
         />
     );
 };

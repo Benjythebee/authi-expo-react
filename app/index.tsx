@@ -1,24 +1,42 @@
-import { Button, Modal, StyleSheet, View } from 'react-native';
+import { Button, Linking, Modal, StyleSheet, View } from 'react-native';
 
 import InteractiveAbsoluteButton from '@/components/interactives/button';
+import HotZone from '@/components/interactives/hot-zone';
 import { ImageView } from '@/components/interactives/image-view';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { useInteractiveConfig } from '@/context/config';
+import { ApiLogger } from '@/utils/apiLogger';
 import { useState } from 'react';
 
 export default function HomeScreen() {
     const [modalVisible, setModalVisible] = useState(false);
     const {metadata} = useInteractiveConfig();
 
+    const handleButtonPress = () => {
+        ApiLogger.info('interactive_triggered', { metadata });
+        if(metadata.action?.type==='modal'){
+            setModalVisible(true);
+        }else{
+            if(metadata.action?.type === 'link' && metadata.action.url) {
+                Linking.openURL(metadata.action.url);
+            }
+        }
+    }
+
   return (
     <View style={styles.container}>
       <ImageView />
-        <InteractiveAbsoluteButton 
+        {metadata.trigger.type === 'zone' && <HotZone
+            position={[metadata.trigger.position.x, metadata.trigger.position.y]}
+            scale={metadata.trigger.scale}
+            onPress={handleButtonPress}
+            />}
+        {metadata.trigger.type !== 'zone' && <InteractiveAbsoluteButton 
           position={[metadata.trigger.position.x, metadata.trigger.position.y]} 
           label={metadata.trigger.label||'Click me!'} 
-          onPress={() => setModalVisible(true)} 
-        />
+          onPress={handleButtonPress} 
+        />}
       {metadata.action?.type==='modal' && modalVisible && (
         <Modal
           transparent={true}
